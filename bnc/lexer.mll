@@ -5,8 +5,6 @@
 
 let space = [' ' '\t' '\n' '\r']
 let digit = ['0'-'9']
-let lower = ['a'-'z']
-let upper = ['A'-'Z']
 
 rule token = parse
 | space+
@@ -19,8 +17,5 @@ rule token = parse
     { INT(int_of_string (Lexing.lexeme lexbuf)) }
 | '+'
     { PLUS }
-
-
-{
-
-}
+| eof
+    { EOF }
