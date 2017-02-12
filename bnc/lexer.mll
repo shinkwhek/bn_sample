@@ -49,5 +49,9 @@ rule token = parse
     { THEN }
 | "else"
     { ELSE }
+| ';'
+    { EOF }
+| ";;"
+    { EOF }
 | eof
     { EOF }
