@@ -1,4 +1,6 @@
 type token =
+  | LPAREN
+  | RPAREN
   | BOOL of (bool)
   | INT of (int)
   | FLOAT of (float)

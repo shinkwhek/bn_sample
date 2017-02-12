@@ -2,6 +2,8 @@
   open Syntax
 %}
 
+%token LPAREN
+%token RPAREN
 %token <bool> BOOL
 %token <int> INT
 %token <float> FLOAT
@@ -24,6 +26,8 @@
 %%
 
 simple_exp:
+  | LPAREN exp RPAREN
+    { $2 }
   | BOOL
     { Bool($1) }
   | INT

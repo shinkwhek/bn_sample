@@ -11,6 +11,10 @@ let upper = ['A'-'Z']
 rule token = parse
 | space+
     { token lexbuf }
+| '('
+    { LPAREN }
+| ')'
+    { RPAREN }
 | "true"
     { BOOL(true) }
 | "false"
