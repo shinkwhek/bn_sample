@@ -1,0 +1,25 @@
+# test/OMakefile
+
+.PHONY: all clean check
+
+OCAMLINCLUDES += ../bnc
+
+FILES[] = 
+	test
+
+OCAMLPACKS[]=
+	oUnit
+
+PROGRAM = test
+
+OCAML_LIBS += ../bnc/target
+
+clean:
+	rm -f *~ *.opt *.cmi *.cmx *.o *.omc *.cma *.cmxa
+
+.DEFAULT: all
+
+all: $(OCamlProgram $(PROGRAM), $(FILES))
+
+check: all
+	./$(PROGRAM)

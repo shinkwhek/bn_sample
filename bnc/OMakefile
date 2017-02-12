@@ -1,0 +1,20 @@
+# bnc/OMakefile
+
+.PHONY: all clean
+
+FILES[]=
+	type
+	mean_func
+	main
+
+LIB = target
+PROGRAM = main
+
+.DEFAULT: $(OCamlProgram $(PROGRAM), $(FILES))
+
+OCamlLibrary($(LIB),$(FILES))
+
+clean:
+	rm -f *~ *.opt *.cmi *.cmx *.o *.omc *.cma *.cmxa
+
+
