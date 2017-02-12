@@ -3,7 +3,11 @@ type t =
   | Int  of int
   | Float of float
   | Add  of t * t
+  | Add_dot of t * t
   | Minus of t * t
+  | Minus_dot of t * t
   | Times of t * t
+  | Times_dot of t * t
   | Divided of t * t
+  | Divided_dot of t * t
                      

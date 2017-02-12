@@ -5,13 +5,37 @@ open Syntax
 let expInt = function
   | Int a -> a
   | _ -> 0
+
+let expFloat = function
+  | Float a -> a
+  | _ -> 0.0
        
 let rec eval c =
   match c with
-  | Bool a         -> Bool a
-  | Int a          -> Int a
-  | Float a        -> Float a
-  | Add(ea,eb)     -> Int( expInt(eval ea) + expInt(eval eb) )
-  | Minus(ea,eb)   -> Int( expInt(eval ea) - expInt(eval eb) )
-  | Times(ea,eb)   -> Int( expInt(eval ea) * expInt(eval eb) )
-  | Divided(ea,eb) -> Int( expInt(eval ea) / expInt(eval eb) )
+  | Bool a ->
+      Bool a
+  
+  | Int a ->
+      Int a
+  | Float a ->
+      Float a
+
+  | Add(ea,eb) ->
+      Int( expInt(eval ea) + expInt(eval eb) )
+  | Add_dot(ea,eb) ->
+      Float( expFloat(eval ea) +. expFloat(eval eb) )
+  
+  | Minus(ea,eb) ->
+      Int( expInt(eval ea) - expInt(eval eb) )
+  | Minus_dot(ea,eb) ->
+      Float( expFloat(eval ea) -. expFloat(eval eb) )
+  
+  | Times(ea,eb) ->
+      Int( expInt(eval ea) * expInt(eval eb) )
+  | Times_dot(ea,eb) ->
+      Float( expFloat(eval ea) *. expFloat(eval eb) )
+  
+  | Divided(ea,eb) ->
+      Int( expInt(eval ea) / expInt(eval eb) )
+  | Divided_dot(ea,eb) ->
+      Float( expFloat(eval ea) /. expFloat(eval eb) )
