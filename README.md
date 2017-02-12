@@ -1,3 +1,3 @@
-# bn_sample
+# sample-language
 
 sample programming language.
