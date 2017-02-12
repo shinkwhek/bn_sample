@@ -3,7 +3,10 @@
 .PHONY: all clean
 
 FILES[]=
+	type
 	syntax
+	parser
+	lexer
 	main
 
 LIB = target

@@ -1,13 +1,25 @@
 {
+  open Parser
   open Type
 }
 
-rule lex = parse
-| [' ' '\t' '\n'] { lex lexbuf }
-| "+"             { LPLUS }
-| "-"             { LMINUS }
-| ['0'-'9']+ as s { LCONST(int_of_string s) }
-| eof             { LEOF }
+let space = [' ' '\t' '\n' '\r']
+let digit = ['0'-'9']
+let lower = ['a'-'z']
+let upper = ['A'-'Z']
+
+rule token = parse
+| space+
+    { token lexbuf }
+| "true"
+    { BOOL(true) }
+| "false"
+    { BOOL(false) }
+| digit+
+    { INT(int_of_string (Lexing.lexeme lexbuf)) }
+| '+'
+    { PLUS }
+
 
 {
 
