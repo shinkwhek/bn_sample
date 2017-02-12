@@ -15,6 +15,8 @@
 %token TIMES_DOT
 %token DIVIDED
 %token DIVIDED_DOT
+%token DISJ
+%token CONJ
 %token IF
 %token THEN
 %token ELSE
@@ -62,6 +64,11 @@ exp:
       { Divided ($1, $3) }
   | exp DIVIDED_DOT exp
       { Divided_dot ($1, $3) }
+
+  | exp DISJ exp
+      { Disj($1, $3) }
+  | exp CONJ exp
+      { Conj($1, $3) }
 
   | IF exp THEN exp ELSE exp
       { If($2, $4, $6) }

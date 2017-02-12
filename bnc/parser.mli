@@ -12,6 +12,8 @@ type token =
   | TIMES_DOT
   | DIVIDED
   | DIVIDED_DOT
+  | DISJ
+  | CONJ
   | IF
   | THEN
   | ELSE

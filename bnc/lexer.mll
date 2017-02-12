@@ -39,6 +39,10 @@ rule token = parse
     { DIVIDED }
 | "/."
     { DIVIDED_DOT }
+| "\\/"
+    { DISJ }
+| "/\\"
+    { CONJ }
 | "if"
     { IF }
 | "then"

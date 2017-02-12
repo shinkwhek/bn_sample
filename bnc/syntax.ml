@@ -10,4 +10,6 @@ type t =
   | Times_dot of t * t
   | Divided of t * t
   | Divided_dot of t * t
+  | Disj of t * t
+  | Conj of t * t
   | If of t * t * t

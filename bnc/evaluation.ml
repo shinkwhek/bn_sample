@@ -44,5 +44,10 @@ let rec eval c =
   | Divided_dot(ea,eb) ->
       Float( expFloat(eval ea) /. expFloat(eval eb) )
 
+  | Disj(ea,eb) ->
+      Bool( expBool(eval ea) || expBool(eval eb) )
+  | Conj(ea,eb) ->
+      Bool( expBool(eval ea) && expBool(eval eb) )
+
   | If(cnd, tn, el) ->
       if expBool(eval cnd) = true then eval(tn) else eval(el)

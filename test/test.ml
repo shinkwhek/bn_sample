@@ -50,4 +50,16 @@ let _ = run_test_tt_main begin "main.ml" >::: [
   "> if false then 1 else 2 => 2" >:: begin fun () ->
     assert_equal (Int 2) ( interpretation "if false then 1 else 2" )
   end;
+  "> false \\/ false => false" >:: begin fun () ->
+    assert_equal (Bool false) ( interpretation "false \\/ false" )
+  end;
+  "> true \\/ false => true" >:: begin fun () ->
+    assert_equal (Bool true) ( interpretation "true \\/ false" )
+  end;
+  "> true /\\ false => false" >:: begin fun () ->
+    assert_equal (Bool false) ( interpretation "true /\\ false" )
+  end;
+  "> true /\\ true => true" >:: begin fun () ->
+    assert_equal (Bool true) ( interpretation "true /\\ true" )
+  end;
 ] end
