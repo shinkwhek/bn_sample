@@ -7,6 +7,7 @@ FILES[]=
 	syntax
 	parser
 	lexer
+	evaluation
 	main
 
 LIB = target
