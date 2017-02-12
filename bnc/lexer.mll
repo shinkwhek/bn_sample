@@ -39,5 +39,11 @@ rule token = parse
     { DIVIDED }
 | "/."
     { DIVIDED_DOT }
+| "if"
+    { IF }
+| "then"
+    { THEN }
+| "else"
+    { ELSE }
 | eof
     { EOF }

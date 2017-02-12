@@ -44,4 +44,10 @@ let _ = run_test_tt_main begin "main.ml" >::: [
   "> 2 * (1 + 2) => 6" >:: begin fun () ->
     assert_equal (Int 6) ( interpretation "2 * (1 + 2)" )
   end;
+  "> if true then 1 else 2 => 1" >:: begin fun () ->
+    assert_equal (Int 1) ( interpretation "if true then 1 else 2" )
+  end;
+  "> if false then 1 else 2 => 2" >:: begin fun () ->
+    assert_equal (Int 2) ( interpretation "if false then 1 else 2" )
+  end;
 ] end

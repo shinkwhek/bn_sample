@@ -12,6 +12,9 @@ type token =
   | TIMES_DOT
   | DIVIDED
   | DIVIDED_DOT
+  | IF
+  | THEN
+  | ELSE
   | EOF
 
 val exp :

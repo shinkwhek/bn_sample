@@ -9,7 +9,11 @@ let expInt = function
 let expFloat = function
   | Float a -> a
   | _ -> 0.0
-       
+
+let expBool = function
+  | Bool a -> a
+  | _ -> false
+
 let rec eval c =
   match c with
   | Bool a ->
@@ -39,3 +43,6 @@ let rec eval c =
       Int( expInt(eval ea) / expInt(eval eb) )
   | Divided_dot(ea,eb) ->
       Float( expFloat(eval ea) /. expFloat(eval eb) )
+
+  | If(cnd, tn, el) ->
+      if expBool(eval cnd) = true then eval(tn) else eval(el)
