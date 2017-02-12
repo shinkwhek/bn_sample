@@ -3,6 +3,9 @@ type token =
   | INT of (int)
   | FLOAT of (float)
   | PLUS
+  | MINUS
+  | TIMES
+  | DIVIDED
   | EOF
 
 val exp :

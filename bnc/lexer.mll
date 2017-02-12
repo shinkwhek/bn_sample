@@ -21,5 +21,11 @@ rule token = parse
     { FLOAT(float_of_string (Lexing.lexeme lexbuf)) }
 | '+'
     { PLUS }
+| '-'
+    { MINUS }
+| '*'
+    { TIMES }
+| '/'
+    { DIVIDED }
 | eof
     { EOF }

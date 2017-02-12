@@ -6,9 +6,12 @@
 %token <int> INT
 %token <float> FLOAT
 %token PLUS
+%token MINUS
+%token TIMES
+%token DIVIDED
 %token EOF
 
-%left PLUS
+%left PLUS MINUS TIMES DIVIDED
 
 %type <Syntax.t> exp
 %start exp
@@ -28,3 +31,9 @@ exp:
       { $1 }
   | exp PLUS exp
       { Add ($1, $3) }
+  | exp MINUS exp
+      { Minus ($1, $3) }
+  | exp TIMES exp
+      { Times ($1, $3) }
+  | exp DIVIDED exp
+      { Divided ($1, $3) }
