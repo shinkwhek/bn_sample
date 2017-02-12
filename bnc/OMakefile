@@ -3,8 +3,7 @@
 .PHONY: all clean
 
 FILES[]=
-	type
-	mean_func
+	syntax
 	main
 
 LIB = target

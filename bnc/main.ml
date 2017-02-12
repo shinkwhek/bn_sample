@@ -3,8 +3,7 @@
  * author: shinkwhek
  *)
 
-open Type
-open Mean_func
+open Syntax
 
 let _ =
   print_endline "Howdy."
