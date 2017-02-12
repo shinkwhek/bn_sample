@@ -1,6 +1,7 @@
 type token =
   | BOOL of (bool)
   | INT of (int)
+  | FLOAT of (float)
   | PLUS
   | EOF
 

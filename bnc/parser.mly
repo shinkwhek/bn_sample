@@ -4,6 +4,7 @@
 
 %token <bool> BOOL
 %token <int> INT
+%token <float> FLOAT
 %token PLUS
 %token EOF
 
@@ -19,6 +20,8 @@ simple_exp:
     { Bool($1) }
   | INT
     { Int($1) }
+  | FLOAT
+    { Float($1) }
 
 exp:
   | simple_exp
