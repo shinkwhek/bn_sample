@@ -62,4 +62,16 @@ let _ = run_test_tt_main begin "main.ml" >::: [
   "> true /\\ true => true" >:: begin fun () ->
     assert_equal (Bool true) ( interpretation "true /\\ true" )
   end;
+  "> 1 = 1 => true" >:: begin fun () ->
+    assert_equal (Bool true) ( interpretation "1 = 1" )
+  end;
+  "> 1 = 0 => false" >:: begin fun () ->
+    assert_equal (Bool false) ( interpretation "1 = 0" )
+  end;
+  "> 1.1 = 1.1 => true" >:: begin fun () ->
+    assert_equal (Bool true)  ( interpretation "1.1 = 1.1" )
+  end;
+  "> 1.1 = 2.1 => false" >:: begin fun () ->
+    assert_equal (Bool false) ( interpretation "1.1 = 2.1" )
+  end;
 ] end

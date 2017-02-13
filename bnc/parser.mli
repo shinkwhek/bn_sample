@@ -14,6 +14,7 @@ type token =
   | DIVIDED_DOT
   | DISJ
   | CONJ
+  | EQUAL
   | IF
   | THEN
   | ELSE

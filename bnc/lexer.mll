@@ -43,6 +43,8 @@ rule token = parse
     { DISJ }
 | "/\\"
     { CONJ }
+| '='
+    { EQUAL }
 | "if"
     { IF }
 | "then"

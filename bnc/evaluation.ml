@@ -49,5 +49,14 @@ let rec eval c =
   | Conj(ea,eb) ->
       Bool( expBool(eval ea) && expBool(eval eb) )
 
+  | Equal(ea,eb) ->
+      (
+        let eae = eval(ea) in
+        let ebe = eval(eb) in
+        match (eae,ebe) with
+        | (Int a, Int b)     -> if a = b then Bool(true) else Bool(false)
+        | (Float a, Float b) -> if a = b then Bool(true) else Bool(false)
+        | (a,b)              -> if a = b then Bool(true) else Bool(false)
+      )
   | If(cnd, tn, el) ->
       if expBool(eval cnd) = true then eval(tn) else eval(el)
