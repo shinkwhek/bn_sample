@@ -1,4 +1,4 @@
-(* ==== ==== ==== bn language ==== ==== ==== *)
+(* ==== ==== ==== sample language ==== ==== ==== *)
 (*
  * author: shinkwhek
  *)
