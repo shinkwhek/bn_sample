@@ -3,27 +3,25 @@
 open Syntax
 open Env
 
+exception ExpDTypeError of string
+       
 let expDInt = function
   | DInt a -> a
-  | _ -> 0
+  | _ -> raise (ExpDTypeError " not DInt.")
 
 let expDFloat = function
   | DFloat a -> a
-  | _ -> 0.0
+  | _ -> raise (ExpDTypeError " not DFloat.")
 
 let expDBool = function
   | DBool a -> a
-  | _ -> false
+  | _ -> raise (ExpDTypeError " not DBool.")
 
 let rec eval e env =
   match e with
-  | Bool a ->
-      DBool a
-  
-  | Int a ->
-      DInt a
-  | Float a ->
-      DFloat a
+  | Bool a  -> DBool a
+  | Int a   -> DInt a
+  | Float a -> DFloat a
 
   | Add(ea,eb) ->
       let e1 = eval ea env in
