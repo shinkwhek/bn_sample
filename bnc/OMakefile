@@ -7,6 +7,7 @@ FILES[]=
 	syntax
 	parser
 	lexer
+	env
 	evaluation
 	main
 
