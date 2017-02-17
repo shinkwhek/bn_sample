@@ -81,3 +81,11 @@ let rec eval e env =
       let ec = eval cnd env in
       if expDBool(ec) = true then eval tn env else eval el env
 
+  | Var a -> List.assoc a env
+      
+  | Fun(m0, b0, next) ->
+      let cls = Env.Closure(m0, b0, env) in
+      let v = eval b0 env in
+      let env' = (m0,v) :: env in
+      eval next env'
+

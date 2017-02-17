@@ -75,4 +75,10 @@ let _ = run_test_tt_main begin "main.ml" >::: [
   "> 1.1 = 2.1 => false" >:: begin fun () ->
     assert_equal (DBool false) ( interpretation "1.1 = 2.1" [] )
   end;
+  "> let y = 0 in y => 0" >:: begin fun () ->
+    assert_equal (DInt 0) ( interpretation "let y = 0 in y" [] )
+  end;
+  "> let y = 1 in y + 1 => 2" >:: begin fun () ->
+    assert_equal (DInt 2) ( interpretation "let y = 1 in y + y" [] )
+  end;
 ] end

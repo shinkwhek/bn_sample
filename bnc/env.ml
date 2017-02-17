@@ -1,8 +1,8 @@
 
 
-type env = (string * result) list
+type env = (Type.n * result) list
 and result =
   | DBool of bool
   | DInt of int
   | DFloat of float
-  | Closure of string * Syntax.t * env
+  | Closure of Type.n * Syntax.t * env

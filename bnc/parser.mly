@@ -21,6 +21,9 @@
 %token IF
 %token THEN
 %token ELSE
+%token <Type.n> NAME
+%token LET
+%token IN
 %token EOF
 
 %left PLUS MINUS TIMES DIVIDED
@@ -41,6 +44,8 @@ simple_exp:
     { Int($1) }
   | FLOAT
     { Float($1) }
+  | NAME
+    { Var($1) }
 
 exp:
   | simple_exp
@@ -75,3 +80,8 @@ exp:
       { Equal($1, $3) }
   | IF exp THEN exp ELSE exp
       { If($2, $4, $6) }
+
+  | LET NAME EQUAL exp IN exp
+      { Fun( $2 ,$4, $6) }
+
+

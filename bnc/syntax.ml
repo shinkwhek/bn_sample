@@ -16,3 +16,5 @@ type t =
   | Conj of t * t
   | Equal of t * t
   | If of t * t * t
+  | Var of Type.n
+  | Fun of Type.n * t * t

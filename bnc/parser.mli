@@ -18,6 +18,9 @@ type token =
   | IF
   | THEN
   | ELSE
+  | NAME of (Type.n)
+  | LET
+  | IN
   | EOF
 
 val exp :
