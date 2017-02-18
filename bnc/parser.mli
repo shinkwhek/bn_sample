@@ -20,6 +20,7 @@ type token =
   | ELSE
   | NAME of (Type.n)
   | LET
+  | REC
   | IN
   | EOF
 

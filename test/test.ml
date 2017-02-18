@@ -81,4 +81,10 @@ let _ = run_test_tt_main begin "main.ml" >::: [
   "> let y = 1 in y + 1 => 2" >:: begin fun () ->
     assert_equal (DInt 2) ( interpretation "let y = 1 in y + y" [] )
   end;
+  "> let y = 1 in let x = 2 in x + y = 3" >:: begin fun () ->
+    assert_equal (DInt 3) (interpretation "let y = 1 in let x = 2 in x + y" [])
+  end;
+  "> let rec y a = a + a in y 1 => 2" >:: begin fun () ->
+    assert_equal (DInt 2) ( interpretation "let rec y a = a + a in y 1" [] )
+  end;
 ] end

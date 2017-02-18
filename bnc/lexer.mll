@@ -53,6 +53,8 @@ rule token = parse
     { ELSE }
 | "let"
     { LET }
+| "rec"
+    { REC }
 | "in"
     { IN }
 | lower (lower|digit|upper|'_')*

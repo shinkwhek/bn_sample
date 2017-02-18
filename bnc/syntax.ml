@@ -17,4 +17,5 @@ type t =
   | Equal of t * t
   | If of t * t * t
   | Var of Type.n
-  | Fun of Type.n * t * t
+  | Fun of Type.n * t
+  | App of t * t

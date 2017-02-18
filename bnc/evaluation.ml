@@ -82,10 +82,18 @@ let rec eval e env =
       if expDBool(ec) = true then eval tn env else eval el env
 
   | Var a -> List.assoc a env
-      
-  | Fun(m0, b0, next) ->
-      let cls = Env.Closure(m0, b0, env) in
-      let v = eval b0 env in
-      let env' = (m0,v) :: env in
-      eval next env'
+ 
+  | Fun (n,b) ->
+      Env.Closure(n, b, env)
+
+  | App (f, e1) ->
+      let cls = eval f env in
+      (
+        match cls with
+        | Env.Closure(n,e2,env') ->
+            let v = eval e1 env in
+            let env'' = (n,v) :: env' in
+            eval e2 env''
+        | _ -> raise (ExpDTypeError "syntax error.")
+      )
 
