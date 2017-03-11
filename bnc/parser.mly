@@ -23,14 +23,11 @@
 %token ELSE
 %token <Type.n> NAME
 %token LET
-%token REC
 %token IN
-%token EOF
 
 %right lets
 %left PLUS MINUS TIMES DIVIDED
 %left PLUS_DOT MINUS_DOT TIMES_DOT DIVIDED_DOT
-%left apps
 
 %type <Syntax.t> exp
 %start exp
@@ -85,6 +82,7 @@ exp:
       { If($2, $4, $6) }
 
   | LET NAME EQUAL exp IN exp
+      %prec lets
       { App( Fun($2,$6), $4) }
 
 

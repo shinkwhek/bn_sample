@@ -53,15 +53,8 @@ rule token = parse
     { ELSE }
 | "let"
     { LET }
-| "rec"
-    { REC }
 | "in"
     { IN }
 | lower (lower|digit|upper|'_')*
     { NAME(Lexing.lexeme lexbuf) }
-| ';'
-    { EOF }
-| ";;"
-    { EOF }
-| eof
-    { EOF }
+
