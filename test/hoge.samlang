@@ -1,0 +1,3 @@
+let x a = a + a in
+let b = 3 in
+x b

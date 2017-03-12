@@ -58,3 +58,4 @@ rule token = parse
 | lower (lower|digit|upper|'_')*
     { NAME(Lexing.lexeme lexbuf) }
 
+| eof { EOF }

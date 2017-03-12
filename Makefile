@@ -12,7 +12,13 @@ bin/sl: ifn_menhir
 		$(OCB) bnc/main.native
 		mv main.native bin/sl
 
+test: ounit
+
+ounit:
+	$(OCB) -package oUnit test/unit-test.native
+	./unit-test.native
+
 ifn_menhir:
 	which menhir
 
-.PHONY:	all clean ifn_menhir bin/sl
+.PHONY:	all clean ifn_menhir bin/sl ounit test

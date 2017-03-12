@@ -24,65 +24,51 @@
 %token <Type.n> NAME
 %token LET
 %token IN
+%token EOF
 
 %right lets
 %left PLUS MINUS TIMES DIVIDED
 %left PLUS_DOT MINUS_DOT TIMES_DOT DIVIDED_DOT
 
-%type <Syntax.t> exp
-%start exp
+%type <Syntax.t> main
+%start main
 
 %%
 
-simple_exp:
-  | LPAREN exp RPAREN
-    { $2 }
+main
+	: e=exp EOF			{ e }
+	;
 
-  | BOOL
-    { Bool($1) }
-  | INT
-    { Int($1) }
-  | FLOAT
-    { Float($1) }
-  | NAME
-    { Var($1) }
+simple_exp
+	: LPAREN e=exp RPAREN		{ e }
 
-exp:
-  | simple_exp
-      { $1 }
+  	| b=BOOL	 	      	{ Bool(b) }
+  	| i=INT				{ Int(i) }
+	| f=FLOAT			{ Float(f) }
+	| n=NAME			{ Var(n) }
+
+exp
+	: e=simple_exp			{ e }
+
+	| e1=exp PLUS e2=exp		{ Add(e1,e2) }
+	| e1=exp PLUS_DOT e2=exp	{ Add_dot(e1,e2) }
   
-  | exp PLUS exp
-      { Add ($1, $3) }
-  | exp PLUS_DOT exp
-      { Add_dot ($1, $3) }
+	| e1=exp MINUS e2=exp		{ Minus(e1,e2) }
+  	| e1=exp MINUS_DOT e2=exp	{ Minus_dot(e1, e2) }
   
-  | exp MINUS exp
-      { Minus ($1, $3) }
-  | exp MINUS_DOT exp
-      { Minus_dot ($1, $3) }
+	| e1=exp TIMES e2=exp		{ Times(e1,e2) }
+  	| e1=exp TIMES_DOT e2=exp	{ Times_dot(e1,e2) }
   
-  | exp TIMES exp
-      { Times ($1, $3) }
-  | exp TIMES_DOT exp
-      { Times_dot ($1, $3) }
-  
-  | exp DIVIDED exp
-      { Divided ($1, $3) }
-  | exp DIVIDED_DOT exp
-      { Divided_dot ($1, $3) }
+	| e1=exp DIVIDED e2=exp		{ Divided(e1,e2) }
+  	| e1=exp DIVIDED_DOT e2=exp	{ Divided_dot(e1,e2) }
 
-  | exp DISJ exp
-      { Disj($1, $3) }
-  | exp CONJ exp
-      { Conj($1, $3) }
+  	| e1=exp DISJ e2=exp 		{ Disj(e1,e2) }
+  	| e1=exp CONJ e2=exp		{ Conj(e1,e2) }
 
-  | exp EQUAL exp
-      { Equal($1, $3) }
-  | IF exp THEN exp ELSE exp
-      { If($2, $4, $6) }
+  	| e1=exp EQUAL e2=exp		  	      { Equal(e1,e2) }
+  	| IF conf=exp THEN th=exp ELSE el=exp	      { If(conf,th,el) }
 
-  | LET NAME EQUAL exp IN exp
-      %prec lets
-      { App( Fun($2,$6), $4) }
-
+  	| LET n=NAME EQUAL f=exp IN next=exp
+	  %prec lets
+	  { App(Fun(n,next),f) }
 
