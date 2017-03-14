@@ -9,7 +9,11 @@ let file f =
   let result = Evaluation.eval str [] in
   let result_str = Show_result.showResult result in
   print_string result_str
-*)
+ *)
+
+let interpretation f l =
+  Evaluation.eval (Parser.main Lexer.token (Lexing.from_string f)) l
+
 let () =
   (*
   let argc = Array.length Sys.argv in

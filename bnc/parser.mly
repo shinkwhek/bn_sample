@@ -42,13 +42,13 @@ main
 simple_exp
 	: LPAREN e=exp RPAREN		{ e }
 
-  	| b=BOOL	 	      	{ Bool(b) }
-  	| i=INT				{ Int(i) }
-	| f=FLOAT			{ Float(f) }
-	| n=NAME			{ Var(n) }
+  	| b=BOOL 	   				{ Bool(b) }
+  	| i=INT						{ Int(i) }
+	| f=FLOAT					{ Float(f) }
+	| n=NAME					{ Var(n) }
 
 exp
-	: e=simple_exp			{ e }
+	: e=simple_exp				{ e }
 
 	| e1=exp PLUS e2=exp		{ Add(e1,e2) }
 	| e1=exp PLUS_DOT e2=exp	{ Add_dot(e1,e2) }
@@ -65,8 +65,8 @@ exp
   	| e1=exp DISJ e2=exp 		{ Disj(e1,e2) }
   	| e1=exp CONJ e2=exp		{ Conj(e1,e2) }
 
-  	| e1=exp EQUAL e2=exp		  	      { Equal(e1,e2) }
-  	| IF conf=exp THEN th=exp ELSE el=exp	      { If(conf,th,el) }
+  	| e1=exp EQUAL e2=exp		  	 		       { Equal(e1,e2) }
+  	| IF conf=exp THEN th=exp ELSE el=exp		   { If(conf,th,el) }
 
   	| LET n=NAME EQUAL f=exp IN next=exp
 	  %prec lets
